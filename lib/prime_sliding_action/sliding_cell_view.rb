@@ -19,7 +19,7 @@ class SlidingCellView < MPCellWithSection
             left: 320 + @sliding_action_buttons_offset, 
             height: cell_height,
             title_color: :white,
-            title: options[:title] || 'Test',
+            title: options[:title],
             background_color: options[:color] || :red
           @section.screen.setup button, styles: styles
           @sliding_action_buttons_offset += button.width
