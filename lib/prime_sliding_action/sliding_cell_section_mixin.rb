@@ -1,12 +1,17 @@
 module SlidingCellSectionMixin
   extend ::MotionSupport::Concern
+  include MotionPrime::HasNormalizer
 
   def sliding_action_buttons
-    self.class.sliding_action_buttons || {}
+    buttons = {}
+    (self.class.sliding_action_buttons || {}).each do |key, value|
+      buttons[key] = normalize_options(value.clone)
+    end
+    buttons
   end
 
   def has_sliding_actions?
-    sliding_action_buttons.present?
+    self.class.sliding_action_buttons.present?
   end
 
   module ClassMethods

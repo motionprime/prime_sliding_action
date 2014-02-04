@@ -1,5 +1,5 @@
 class SlidingCellView < MPCellWithSection
-  attr_accessor :pan_recognizer, :tap_recognizer
+  attr_accessor :pan_recognizer, :tap_recognizer, :sliding_action_buttons
 
   def setSection(section)
     @section = section.try(:weak_ref)
@@ -11,6 +11,7 @@ class SlidingCellView < MPCellWithSection
 
       unless @sliding_action_buttons_rendered
         @sliding_action_buttons_offset = 0
+        @sliding_action_buttons = {}
         @section.sliding_action_buttons.each do |action, options|
           styles = [:"#{@section.name}_action_button", :"#{@section.name}_action_button_#{action}"]
           button = @section.screen.add_view MPButton,
@@ -28,6 +29,8 @@ class SlidingCellView < MPCellWithSection
             @section.send(options[:action])
             hide_actions unless (options.has_key?(:hide_on_finish) && !options[:hide_on_finish])
           end
+
+          @sliding_action_buttons[action] = button
 
           self.scroll_view.addSubview button
         end
