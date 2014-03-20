@@ -13,15 +13,15 @@ class SlidingCellView < MPCellWithSection
         @sliding_action_buttons_offset = 0
         @sliding_action_buttons = {}
         @section.sliding_action_buttons.each do |action, options|
-          styles = [:"#{@section.name}_action_button", :"#{@section.name}_action_button_#{action}"]
+          styles = [:base_action_button, :"#{@section.name}_action_button", :"#{@section.name}_action_button_#{action}"]
           button = @section.screen.add_view MPButton,
-            top: 0, 
-            width: 80, 
-            left: 320 + @sliding_action_buttons_offset, 
+            top: 0,
+            width: 80,
+            left: 320 + @sliding_action_buttons_offset,
             height: cell_height,
-            title_color: :white,
+            title_color: options[:title_color] || :white,
             title: options[:title],
-            background_color: options[:color] || :red
+            background_color: options[:background_color] || options[:color] || :red
           @section.screen.setup button, styles: styles
           @sliding_action_buttons_offset += button.width
           button.on :touch do
@@ -43,7 +43,7 @@ class SlidingCellView < MPCellWithSection
       @sliding_action_buttons_rendered = nil
     end
   end
-  
+
   def initialize_content
     self.scroll_view = self.subviews.first
     self.scroll_view.subviews.first.removeFromSuperview
