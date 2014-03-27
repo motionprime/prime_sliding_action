@@ -18,4 +18,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cocoapods"
   spec.add_dependency "motion-cocoapods"
   spec.add_dependency "motion-require"
+  spec.add_dependency "motion-prime", '>= 0.9.6'
 end
