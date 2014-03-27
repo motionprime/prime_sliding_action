@@ -8,14 +8,21 @@ Add this line to your application's Gemfile:
 
     gem 'prime_sliding_action'
 
-And then execute:
+## Usage
 
-    $ bundle
+```
+class MyCellSection < Prime::Section
+  add_sliding_action_button :like, 
+    text_color: :white, 
+    background_color: :red,
+    title: 'Like', 
+    action: :action_like
 
-Or install it yourself as:
-
-    $ gem install prime_sliding_action
-
+  def action_like
+    puts "Like!"
+  end
+end
+```
 
 ## Contributing
 
@@ -24,3 +31,9 @@ Or install it yourself as:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Thanks for using PrimeSlidingAction!
+
+Hope, you'll enjoy PrimeSlidingAction!
+
+Cheers, [Droid Labs](http://droidlabs.pro).
