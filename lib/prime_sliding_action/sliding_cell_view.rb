@@ -22,7 +22,7 @@ class SlidingCellView < MPCellWithSection
             title_color: options[:title_color] || :white,
             title: options[:title],
             background_color: options[:background_color] || options[:color] || :red
-          @section.screen.setup button, styles: styles
+          @section.screen.set_options button, styles: styles
           @sliding_action_buttons_offset += button.width
           button.on :touch do
             button.off(:touch) if options[:unbind]
@@ -125,10 +125,10 @@ class SlidingCellView < MPCellWithSection
     section ? section.container_options[:height] : self.height
   end
 
-  def gestureRecognizer(gestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer: otherGestureRecognizer)
+  def gestureRecognizerShouldBegin(gestureRecognizer)
     if gestureRecognizer.is_a?(UIPanGestureRecognizer)
-      yVelocity = (gestureRecognizer.velocityInView gestureRecognizer.view).y
-      yVelocity.abs >= 10
+      velocity = (gestureRecognizer.velocityInView gestureRecognizer.view)
+      velocity.y.abs < velocity.x.abs
     else
       true
     end
