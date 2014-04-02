@@ -22,7 +22,7 @@ class SlidingCellView < MPCellWithSection
             title_color: options[:title_color] || :white,
             title: options[:title],
             background_color: options[:background_color] || options[:color] || :red
-          @section.screen.set_options button, styles: styles
+          @section.screen.set_options_for button, styles: styles
           @sliding_action_buttons_offset += button.width
           button.on :touch do
             button.off(:touch) if options[:unbind]
