@@ -1,4 +1,4 @@
-class SlidingCellView < MPCellWithSection
+class SlidingCellView < MPTableCellWithSection
   attr_accessor :pan_recognizer, :tap_recognizer, :sliding_action_buttons
 
   def setSection(section)
@@ -6,7 +6,7 @@ class SlidingCellView < MPCellWithSection
     self.content_view.setSection(@section)
     if section
       # init section
-      @table = @section.table.table_view
+      @table = @section.collection_section.collection_view
       @table.directionalLockEnabled = true
 
       unless @sliding_action_buttons_rendered

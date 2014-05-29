@@ -14,8 +14,12 @@ module SlidingCellContainerMixin
                 has_drawn_content: true
               })
               options[:styles] ||= []
-              options[:styles] = [:"#{table.name}_first_cell"] if table.data.first == self
-              options[:styles] = [:"#{table.name}_last_cell"] if table.data.last == self
+              if collection_section.data.first == self
+                options[:styles] = [:"#{collection_section.name}_first_cell"]
+              end
+              if collection_section.data.last == self
+                options[:styles] = [:"#{collection_section.name}_last_cell"]
+              end
               MotionPrime::BaseElement.factory(:sliding_cell, options)
             end
           else
