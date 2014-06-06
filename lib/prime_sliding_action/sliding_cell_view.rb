@@ -46,7 +46,18 @@ class SlidingCellView < MPTableCellWithSection
 
   def initialize_content
     self.scroll_view = self.subviews.first
-    self.scroll_view.subviews.first.removeFromSuperview
+    # iOS 8
+    if self.scroll_view.is_a?(UITableViewCellContentView)
+      self.scroll_view.removeFromSuperview
+      self.scroll_view = UITableViewCellScrollView.alloc.initWithFrame(self.bounds)
+      self.scroll_view.setBackgroundColor(:clear.uicolor)
+      self.scroll_view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+      self.scroll_view.top = 0
+      self.scroll_view.left = 0
+      self.addSubview(scroll_view)
+    else
+      self.scroll_view.subviews.first.removeFromSuperview
+    end
     self.content_view = MPTableViewCellContentView.alloc.initWithFrame(CGRectMake(0,0,320, self.height))
     self.content_view.setBackgroundColor(:white.uicolor)
     self.content_view.autoresizingMask = UIViewAutoresizingFlexibleHeight
