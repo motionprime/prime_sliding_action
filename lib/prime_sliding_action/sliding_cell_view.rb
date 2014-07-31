@@ -111,7 +111,7 @@ class SlidingCellView < MPTableCellWithSection
   def tap
     if @sliding_action_buttons_state == :hidden && @table
       cell_index = @table.indexPathForCell(self)
-      @table.delegate.tableView(@table, didSelectRowAtIndexPath: cell_index)
+      @table.delegate.tableView(cell_index)
     else
       hide_actions
     end
