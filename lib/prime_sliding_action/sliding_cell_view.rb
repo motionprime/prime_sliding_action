@@ -49,7 +49,7 @@ class SlidingCellView < MPTableCellWithSection
     # iOS 8
     if self.scroll_view.is_a?(UITableViewCellContentView)
       self.scroll_view.removeFromSuperview
-      self.scroll_view = UITableViewCellScrollView.alloc.initWithFrame(self.bounds)
+      self.scroll_view = UIScrollView.alloc.initWithFrame(self.bounds)
       self.scroll_view.setBackgroundColor(:clear.uicolor)
       self.scroll_view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
       self.scroll_view.top = 0
@@ -106,6 +106,7 @@ class SlidingCellView < MPTableCellWithSection
         self.scroll_view.setContentOffset CGPointMake(current_x, 0)
       end
     end
+    0
   end
 
   def tap
@@ -115,6 +116,7 @@ class SlidingCellView < MPTableCellWithSection
     else
       hide_actions
     end
+    0
   end
 
   def show_actions
